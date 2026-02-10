@@ -1,0 +1,10 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    
+    # Rediriger la racine vers public/
+    RewriteRule ^$ public/ [L]
+    
+    # Rediriger toutes les autres requêtes vers public/
+    RewriteCond %{REQUEST_URI} !^/public/
+    RewriteRule ^(.*)$ public/$1 [L]
+</IfModule>

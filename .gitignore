@@ -1,0 +1,8 @@
+/vendor/
+/node_modules/
+.env
+config/config.php
+*.log
+.DS_Store
+/storage/
+!/storage/.gitkeep

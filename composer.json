@@ -1,0 +1,15 @@
+{
+    "name": "digital-signage/web",
+    "description": "Plateforme d'affichage numérique",
+    "type": "project",
+    "require": {
+        "php": ">=7.4",
+        "vlucas/phpdotenv": "^5.6",
+        "phpmailer/phpmailer": "^7.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    }
+}

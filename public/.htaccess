@@ -1,0 +1,33 @@
+RewriteEngine On
+
+# Augmentation des limites d'upload pour les vidéos
+php_value upload_max_filesize 64M
+php_value post_max_size 64M
+php_value memory_limit 128M
+
+Options -MultiViews
+
+# MIME Types pour garantir la lecture vidéo/image
+AddType video/mp4 .mp4
+AddType video/webm .webm
+AddType image/jpeg .jpg .jpeg
+AddType image/png .png
+AddType image/gif .gif
+AddType image/webp .webp
+
+# CORS Headers (pour le player s'il est embed ou PWA)
+<IfModule mod_headers.c>
+    Header set Access-Control-Allow-Origin "*"
+    Header set Access-Control-Allow-Methods "GET, OPTIONS"
+</IfModule>
+
+# Rediriger toutes les requêtes vers index.php sauf les fichiers existants
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ index.php [QSA,L]
+
+# Empêcher l'accès direct aux fichiers PHP dans src/
+RewriteRule ^src/ - [F,L]
+
+# Empêcher l'accès aux fichiers sensibles
+RewriteRule ^(config|storage|data)/ - [F,L]
